@@ -1,0 +1,19 @@
+#!/bin/bash
+
+case "$1" in
+  320)
+    for f in *.flac; do flac -dcs -- "$f" | lame -S -h -b 320 --ignore-tag-errors - "${f%.flac}.mp3"; done
+    rm *.flac
+    ;;
+  V0 | v0)
+    for f in *.flac; do flac -dcs -- "$f" | lame -S -V 0 --ignore-tag-errors     - "${f%.flac}.mp3"; done
+    rm *.flac
+    ;;
+  V2 | v2)
+    for f in *.flac; do flac -dcs -- "$f" | lame -S -V 2 --ignore-tag-errors     - "${f%.flac}.mp3"; done
+    rm *.flac
+    ;;
+  *)
+    echo "Please specify a bitrate for conversion."
+    ;;
+esac
